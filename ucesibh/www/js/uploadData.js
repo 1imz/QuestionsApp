@@ -46,7 +46,7 @@ var client;
 
 function processData(postString) {
    client = new XMLHttpRequest();
-   client.open('POST','http://developer.cege.ucl.ac.uk:30261/uploadData',true);
+   client.open('POST','http://developer.cege.ucl.ac.uk:30264/uploadData',true);
    client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
    client.onreadystatechange = dataUploaded;  
    client.send(postString);
