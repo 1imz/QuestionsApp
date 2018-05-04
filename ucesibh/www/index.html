@@ -126,17 +126,52 @@
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
-		<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" > 
-		<div id="mapid" style="width: 1600px; height: 400px;"></div>
-		</div>
-		<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" > 
-        <div id="ajaxtest" style="width: 1600px; height: 200px;">
-		<p> Enter File Name For Change & Press Change Div Button </p>
-		<input type='text' size='50' id='filename'>
-		</div>
-		</div>
+          
+          <div>
+
+
+<label for="name">Name</label><input type="text" size="25" id="name"/><br />
+<label for="surname">Surname</label><input type="text" size="25" id="surname"/><br />
+<label for="module">Module</label><input type="text" size="25" id="module"/><br />
+
+
+<p>Would you like lectures in the morning or afternoon?</p>
+	Morning: <input type="radio" name="amorpm" id="morning" /><br />
+	Afternoon: <input type="radio" name="amorpm" id ="afternoon"/><br />
+
+
+
+<p>Which modules are you taking?</p>
+	CEGEG077: <input type="checkbox" name="modules" id = check1 value="CEGEG077" checked="yes" /><br />
+	CEGEG129: <input type="checkbox" name="modules" id = check2 value="CEGEG129" /><br />
+	CEGEG082: <input type="checkbox" name="modules" id = check3 value="CEGEG082" /><br />
+	CEGEG034: <input type="checkbox" name="modules" id = check4 value="CEGEG034"  /><br />
+
+<p>What is your first language?</p>
+<select name="languageselectbox" id="languageselectbox">
+	<option >English </option>
+	<option>Mandarin</option>
+	<option>Greek</option>
+	<option>Italian</option>
+	<option>Spanish</option>
+	<option>Other</option>
+
+</select>
+<br />
+<br />
+<div id="dataUploadResult">The result of the upload goes here</div>
+<label for="latitude">Latitude</label><input type="text" size="25" id="latitude"/><br />
+<label for="longitude">Longitude</label><input type="text" size="25" id="longitude"/><br />
+
+
+<p>Click here to upload the data</p>
+<button id="startUpload" onclick="startDataUpload()">Start Data Upload</button>
+<br />
+
+</div>
       </main>
 	<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 	<script src="./js/appActivity.js"></script>
+    <script src="./js/uploadData.js"> </script>
 	</body>
 </html>
