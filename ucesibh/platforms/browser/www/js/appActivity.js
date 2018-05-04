@@ -58,7 +58,7 @@ function getEarthquakes() {
    // set up the request
    client = new XMLHttpRequest();
    // make the request to the URL
-   client.open('GET','http://developer.cege.ucl.ac.uk:30264/getGeoJSON/roads/location');
+   client.open('GET','http://developer.cege.ucl.ac.uk:30264/getGeoJSON/united_kingdom_poi/geom');
    // tell the request what method to run that will listen for the response
    client.onreadystatechange = earthquakeResponse;  // note don't use earthquakeResponse() with brackets as that doesn't work
    // activate the request
