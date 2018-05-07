@@ -23,6 +23,10 @@ function startDataUpload() {
 	postString = postString + "&answer3="+answer3;
 	var answer4 = document.getElementById("answer4").value;
 	postString = postString + "&answer4="+answer4;
+    
+    var correct_answer = document.getElementById("correct_answer").value;
+	postString = postString + "&correct_answer="+correct_answer;
+
 
 	// now get the geometry values
 	var latitude = document.getElementById("latitude").value;
