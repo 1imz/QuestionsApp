@@ -51,14 +51,24 @@ function loadMap(){
 		}).addTo(mymap);
 
 }
-		
+
+var popup = L.popup();
+
+function onMapClick(e) {
+	popup
+	.setLatLng(e.latlng)
+	.setContent("You clicked the map at " + e.latlng.toString())
+	.openOn(mymap);
+	}
+	// now add the click event detector to the map
+	mymap.on('click', onMapClick);
 		
 // call the server
 function getEarthquakes() {
    // set up the request
    client = new XMLHttpRequest();
    // make the request to the URL
-   client.open('GET','http://developer.cege.ucl.ac.uk:30264/getGeoJSON/united_kingdom_poi/geom');
+   client.open('GET','http://developer.cege.ucl.ac.uk:30264/getGeoJSON/formdata/geom');
    // tell the request what method to run that will listen for the response
    client.onreadystatechange = earthquakeResponse;  // note don't use earthquakeResponse() with brackets as that doesn't work
    // activate the request

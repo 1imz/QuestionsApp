@@ -9,34 +9,25 @@ function startDataUpload() {
 	
 	var postString = "name="+name +"&surname="+surname+"&module="+module;
 	
-		// now get the checkbox values - separate them with a | so that they can be // split later on if necessary
-	var checkString = "";
-	for (var i = 1;i< 5;i++){
-		if (document.getElementById("check"+i).checked === true) {
-			checkString = checkString + document.getElementById("check"+i).value + "||"
-		}
-
-	}
-		// now get the select box values
-	var language = document.getElementById("languageselectbox").value;
-	postString = postString + "&language="+language;
+	// now get the checkbox values - separate them with a | so that they can be 
+	// split later on if necessary
+	var question = document.getElementById("question").value
+	postString = postString + "&question="+question;
+	// now get the select box values
+	var answer1 = document.getElementById("answer1").value;
+	postString = postString + "&answer1="+answer1;
+	
+	var answer2 = document.getElementById("answer2").value;
+	postString = postString + "&answer2="+answer2;
+	var answer3 = document.getElementById("answer3").value;
+	postString = postString + "&answer3="+answer3;
+	var answer4 = document.getElementById("answer4").value;
+	postString = postString + "&answer4="+answer4;
 
 	// now get the geometry values
 	var latitude = document.getElementById("latitude").value;
 	var longitude = document.getElementById("longitude").value;
 	postString = postString + "&latitude=" + latitude + "&longitude=" + longitude;
-
-	postString = postString + "&modulelist="+checkString;
-
-
-// now get the radio button values
-	if (document.getElementById("morning").checked) {
- 		 postString=postString+"&lecturetime=morning";
-	}
-	if (document.getElementById("afternoon").checked) {
- 		 postString=postString+"&lecturetime=afternoon";
-	}
-
 	
 	processData(postString);
 
