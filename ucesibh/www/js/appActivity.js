@@ -19,12 +19,12 @@ var testMarkerPink = L.AwesomeMarkers.icon({
 // this is the code that runs when the App starts
 
 	loadMap();
-	
-	
-		
-		
-// *************
+
 // the functions
+
+//Load map
+
+
 
 function trackLocation() {
     if (navigator.geolocation) {
@@ -37,7 +37,6 @@ function showPosition(position) {
 	// draw a point on the map
 	L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were at "+ position.coords.longitude + " "+position.coords.latitude+"!</b>");mymap.setView([position.coords.latitude, position.coords.longitude], 13);
 	}
-
 
 function loadMap(){
 		mymap = L.map('mapid').setView([51.505, -0.09], 13);
@@ -54,6 +53,7 @@ function loadMap(){
 
 var popup = L.popup();
 
+//shows coordinates of point on map
 function onMapClick(e) {
 	popup
 	.setLatLng(e.latlng)
@@ -68,7 +68,7 @@ function getEarthquakes() {
    // set up the request
    client = new XMLHttpRequest();
    // make the request to the URL
-   client.open('GET','http://developer.cege.ucl.ac.uk:30264/getGeoJSON/formdata/geom');
+   client.open('GET','http://developer.cege.ucl.ac.uk:30264/getquestions');
    // tell the request what method to run that will listen for the response
    client.onreadystatechange = earthquakeResponse;  // note don't use earthquakeResponse() with brackets as that doesn't work
    // activate the request

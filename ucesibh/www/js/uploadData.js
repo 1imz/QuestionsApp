@@ -1,29 +1,25 @@
 function startDataUpload() {
 	alert ("start data upload");
 
-	var name = document.getElementById("name").value;
-	var surname = document.getElementById("surname").value;
-	var module = document.getElementById("module").value;
+	var locationname = document.getElementById("locationname").value;
+	var question = document.getElementById("question").value;
 
-	alert(name + " "+ surname + " "+module);
 	
-	var postString = "name="+name +"&surname="+surname+"&module="+module;
+	var postString = "locationname="+locationname +"&question="+question;
 	
 	// now get the checkbox values - separate them with a | so that they can be 
 	// split later on if necessary
-	var question = document.getElementById("question").value
-	postString = postString + "&question="+question;
-	// now get the select box values
-	var answer1 = document.getElementById("answer1").value;
+	var answer1 = document.getElementById("answer1").value
 	postString = postString + "&answer1="+answer1;
-	
+
 	var answer2 = document.getElementById("answer2").value;
 	postString = postString + "&answer2="+answer2;
+	
 	var answer3 = document.getElementById("answer3").value;
 	postString = postString + "&answer3="+answer3;
 	var answer4 = document.getElementById("answer4").value;
 	postString = postString + "&answer4="+answer4;
-    
+	
     var correct_answer = document.getElementById("correct_answer").value;
 	postString = postString + "&correct_answer="+correct_answer;
 
