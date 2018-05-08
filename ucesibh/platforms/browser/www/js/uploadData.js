@@ -1,11 +1,11 @@
 function startDataUpload() {
 	alert ("start data upload");
 
-	var locationname = document.getElementById("locationname").value;
+	var location_name = document.getElementById("location_name").value;
 	var question = document.getElementById("question").value;
 
 	
-	var postString = "locationname="+locationname +"&question="+question;
+	var postString = "location_name="+location_name +"&question="+question;
 	
 	// now get the checkbox values - separate them with a | so that they can be 
 	// split later on if necessary
