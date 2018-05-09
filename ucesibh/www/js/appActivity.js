@@ -1,8 +1,10 @@
-// the variables
-// and a variable that will hold the layer itself – we need to do this outside the function so that we can use it to remove the layer later on 
-var earthquakelayer;
+// Code adapted from: https://github.com/claireellul/cegeg077-week5app/blob/master/ucfscde/www/js/appActivity.js
+
+
+
 // a global variable to hold the http request
 var client;
+
 // store the map
 var mymap;
 
@@ -38,6 +40,7 @@ function showPosition(position) {
 	L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were at "+ position.coords.longitude + " "+position.coords.latitude+"!</b>");mymap.setView([position.coords.latitude, position.coords.longitude], 13);
 	}
 
+//loads leaflet map
 function loadMap(){
 		mymap = L.map('mapid').setView([51.505, -0.09], 13);
 		// load the tiles
@@ -53,7 +56,7 @@ function loadMap(){
 
 var popup = L.popup();
 
-//shows coordinates of point on map
+//shows coordinates of point when leaflet map is clicked
 function onMapClick(e) {
 	popup
 	.setLatLng(e.latlng)
@@ -62,75 +65,39 @@ function onMapClick(e) {
 	}
 	// now add the click event detector to the map
 	mymap.on('click', onMapClick);
-		
-// call the server
-function getEarthquakes() {
+
+//global variable
+var questionslayer;
+
+// gets the question data
+function getQues() {
    // set up the request
    client = new XMLHttpRequest();
    // make the request to the URL
    client.open('GET','http://developer.cege.ucl.ac.uk:30264/getquestionData');
    // tell the request what method to run that will listen for the response
-   client.onreadystatechange = earthquakeResponse;  // note don't use earthquakeResponse() with brackets as that doesn't work
+   client.onreadystatechange = quesResponse;  // note don't use earthquakeResponse() with brackets as that doesn't work
    // activate the request
    client.send();
 }
-// receive the response
-function earthquakeResponse() {
+// receive the response from server & processes it
+function quesResponse() {
   // wait for a response - if readyState is not 4 then keep waiting 
   if (client.readyState == 4) {
     // get the data from the response
-    var earthquakedata = client.responseText;
+    var QuesData = client.responseText;
     // call a function that does something with the data
-    loadearthquakelayer(earthquakedata);
+    loadquestionslayer(QuesData);
   }
 }
-function loadearthquakelayer(earthquakedata) {
+
+//converts recieved data to JSON and adds to leaflet map
+function loadquestionslayer(QuesData) {
       // convert the text received from the server to JSON 
-      var earthquakejson = JSON.parse(earthquakedata );
+      var Quesjson = JSON.parse(QuesData );
 
       // load the geoJSON layer
-      var earthquakelayer = L.geoJson(earthquakejson,
-        {
-            // use point to layer to create the points
-            pointToLayer: function (feature, latlng)
-            {
-              // look at the GeoJSON file - specifically at the properties - to see the earthquake magnitude and use a different marker depending on this value
-              // also include a pop-up that shows the place value of the earthquakes
-              if (feature.properties.mag > 1.75) {
-                 return L.marker(latlng, {icon:testMarkerRed}).bindPopup("<b>"+feature.properties.place +"</b>");
-              }
-              else {
-                // magnitude is 1.75 or less
-                return L.marker(latlng, {icon:testMarkerPink}).bindPopup("<b>"+feature.properties.place +"</b>");;
-              }
-            },
-        }).addTo(mymap); 
-    mymap.fitBounds(earthquakelayer.getBounds());
-}
-
-//*********
-// functions to change the DIV content using AJAX - week 5
-var xhr;
-function callDivChange() {
-	alert("Changing");
-	xhr = new XMLHttpRequest();
-    var filename = document.getElementById("filename").value;
-	xhr.open("GET", filename , true);
-	xhr.onreadystatechange = processDivChange;
-	try {
-		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      var questionslayer = L.geoJson(Quesjson).addTo(mymap);
+    mymap.fitBounds(questionslayer.getBounds());
 	}
-	catch (e) {
-		// this only works in internet explorer
-	}
-	xhr.send();
-}
-function processDivChange() {
-	if (xhr.readyState < 4) // while waiting response from server
-	document.getElementById('ajaxtest').innerHTML = "Loading...";
-	else if (xhr.readyState === 4) { // 4 = Response from server has been completely loaded.
-	if (xhr.status == 200 && xhr.status < 300)
-		// http status between 200 to 299 are all successful
-	document.getElementById('ajaxtest').innerHTML = xhr.responseText;
-	}
-}
+    
