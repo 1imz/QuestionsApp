@@ -1,3 +1,6 @@
+//Code adapted from: https://github.com/claireellul/cegeg077-week6formcode
+
+//Function to upload user inputs to database table
 function startDataUpload() {
 	alert ("start data upload");
 
@@ -7,8 +10,7 @@ function startDataUpload() {
 	
 	var postString = "location_name="+location_name +"&question="+question;
 	
-	// now get the checkbox values - separate them with a | so that they can be 
-	// split later on if necessary
+
 	var answer1 = document.getElementById("answer1").value
 	postString = postString + "&answer1="+answer1;
 
@@ -35,6 +37,7 @@ function startDataUpload() {
 
 var client;
 
+//uploads data in poststring using POST functionality
 function processData(postString) {
    client = new XMLHttpRequest();
    client.open('POST','http://developer.cege.ucl.ac.uk:30264/uploadData',true);
